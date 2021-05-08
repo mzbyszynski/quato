@@ -89,7 +89,8 @@
           "singleQuote": true,
           "trailingComma": "all"
         }
-      ]
+      ],
+      "react/jsx-props-no-spreading": "off"
     }
   }
 }

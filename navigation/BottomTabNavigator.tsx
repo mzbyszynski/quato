@@ -22,7 +22,6 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof Ionicons>['name'];
   color: string;
 }) {
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 

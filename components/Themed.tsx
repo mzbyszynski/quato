@@ -34,7 +34,6 @@ export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
 
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return <DefaultText style={[{ color }, style]} {...otherProps} />;
 }
 
@@ -45,6 +44,5 @@ export function View(props: ViewProps) {
     'background',
   );
 
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 }
