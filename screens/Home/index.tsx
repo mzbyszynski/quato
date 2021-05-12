@@ -17,8 +17,9 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackScreenProps } from '@react-navigation/stack';
-import { Text, View } from '../../components/Themed';
+import { Text } from '../../components/Themed';
 import { RootStackParamList } from '../../types';
 
 const styles = StyleSheet.create({
@@ -31,19 +32,19 @@ const styles = StyleSheet.create({
     position: 'absolute',
     margin: 16,
     right: 0,
-    bottom: 0,
+    bottom: 16,
   },
 });
 
 export default ({
   navigation,
 }: StackScreenProps<RootStackParamList, 'Home'>) => (
-  <View style={styles.container}>
+  <SafeAreaView style={styles.container}>
     <Text>Home Screen</Text>
     <FAB
       style={styles.fab}
       icon="plus"
       onPress={() => navigation.navigate('AddOpinion')}
     />
-  </View>
+  </SafeAreaView>
 );

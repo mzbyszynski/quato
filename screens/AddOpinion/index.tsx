@@ -23,6 +23,7 @@ import {
   Platform,
 } from 'react-native';
 import { Appbar, Title, TextInput, Button } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { View } from '../../components/Themed';
 import { RootStackParamList } from '../../types';
 import Rating from './Rating';
@@ -33,6 +34,11 @@ const styles = StyleSheet.create({
   },
   item: {
     padding: 16,
+  },
+  rating: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   wrapper: {
     flex: 1,
@@ -58,7 +64,7 @@ const TextInputAvoidingView = ({ children }: React.PropsWithChildren<{}>) =>
 export default ({
   navigation,
 }: StackScreenProps<RootStackParamList, 'Home'>) => (
-  <View style={styles.container}>
+  <SafeAreaView style={styles.container}>
     <TextInputAvoidingView>
       <ScrollView>
         <View style={styles.item}>
@@ -70,26 +76,8 @@ export default ({
         <View style={styles.item}>
           <TextInput label="Category" />
         </View>
-        <View style={styles.item}>
+        <View style={[styles.item, styles.rating]}>
           <Rating />
-        </View>
-        <View style={styles.item}>
-          <TextInput label="Category" />
-        </View>
-        <View style={styles.item}>
-          <TextInput label="Category" />
-        </View>
-        <View style={styles.item}>
-          <TextInput label="Category" />
-        </View>
-        <View style={styles.item}>
-          <TextInput label="Category" />
-        </View>
-        <View style={styles.item}>
-          <TextInput label="Category" />
-        </View>
-        <View style={styles.item}>
-          <TextInput label="Category" />
         </View>
       </ScrollView>
       <Appbar style={styles.bottom}>
@@ -98,5 +86,5 @@ export default ({
         <Button>Save</Button>
       </Appbar>
     </TextInputAvoidingView>
-  </View>
+  </SafeAreaView>
 );

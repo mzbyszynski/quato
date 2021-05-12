@@ -15,6 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import * as React from 'react';
+import { StyleSheet } from 'react-native';
 import { ToggleButton } from 'react-native-paper';
 
 enum RatingValue {
@@ -24,6 +25,19 @@ enum RatingValue {
   Love = 'Love',
 }
 
+const styles = StyleSheet.create({
+  button: {
+    margin: 16,
+    borderWidth: 0,
+    backgroundColor: 'transparent',
+  },
+});
+
+const commonButtonProps = {
+  style: styles.button,
+  size: 36,
+};
+
 export default () => {
   const [rating, setRating] = React.useState<string>(RatingValue.Like);
   return (
@@ -31,10 +45,34 @@ export default () => {
       value={rating}
       onValueChange={(value) => setRating(value)}
     >
-      <ToggleButton icon="emoticon-frown" value={RatingValue.Hate} />
-      <ToggleButton icon="thumb-down" value={RatingValue.DoNotLike} />
-      <ToggleButton icon="thumb-up" value={RatingValue.Like} />
-      <ToggleButton icon="heart" value={RatingValue.Love} />
+      <ToggleButton
+        {...commonButtonProps}
+        icon="emoticon-frown"
+        color={rating === RatingValue.Hate ? 'green' : undefined}
+        value={RatingValue.Hate}
+        accessibilityLabel={RatingValue.Hate}
+      />
+      <ToggleButton
+        {...commonButtonProps}
+        icon="thumb-down"
+        color={rating === RatingValue.DoNotLike ? 'orange' : undefined}
+        value={RatingValue.DoNotLike}
+        accessibilityLabel={RatingValue.DoNotLike}
+      />
+      <ToggleButton
+        {...commonButtonProps}
+        icon="thumb-up"
+        color={rating === RatingValue.Like ? 'orange' : undefined}
+        value={RatingValue.Like}
+        accessibilityLabel={RatingValue.Like}
+      />
+      <ToggleButton
+        {...commonButtonProps}
+        icon="heart"
+        color={rating === RatingValue.Love ? 'red' : undefined}
+        value={RatingValue.Love}
+        accessibilityLabel={RatingValue.Love}
+      />
     </ToggleButton.Row>
   );
 };
