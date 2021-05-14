@@ -1,5 +1,5 @@
 # Development Journal
-
+_Oldest to newest_
 ## 2021-05-11: Getting Started
 Not exactly starting now, but starting this document. Quato is an app I've wanted to build for a while. My hope is I can build it out enough so it works and I can use it myself. Stretch goal is to convince my partner to use it too. 
 
@@ -40,3 +40,12 @@ I've also started replacing some of the generated expo code with some rough vers
 1. Set up basic GraphQL schema for FaunaDB.
 1. Add Apollo client and create mutation to write data from AddOpinion form to fauna.
 1. Work on the next screen.
+
+## 2021-05-13: Learning Fauna
+Started looking at FaunaDB. Decided to follow their [GraphQL tutorial](https://docs.fauna.com/fauna/current/tutorials/graphql/quick_start) using a local [docker image](https://docs.fauna.com/fauna/current/integrations/dev). Using their image was not straightforward but I found [this article](https://dev.to/englishcraig/how-to-set-up-faunadb-for-local-development-5ha7) that helped sort things out.
+
+__Potential issues found with Fauna GraphQL:__
+* Pagination is cool but results are [not currently sortable](https://forums.fauna.com/t/how-to-sort-graphql-query-results/372) without creating a customer query.
+
+Also started working on authentication with Facebook. Trying the [expo package](https://docs.expo.io/versions/latest/sdk/facebook/).
+Seems like I have to make a bunch of commitments to make this work.

@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  fauna:
+    image: fauna/faunadb
+    ports:
+      - "8084:8084"
+      - "8443:8443"
+      - "8444:8444"
