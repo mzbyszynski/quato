@@ -7,6 +7,7 @@ export type RootStackParamList = {
   Home: undefined;
   AddOpinion: undefined;
   NotFound: undefined;
+  Login: undefined;
 };
 
 export type BottomTabParamList = {
