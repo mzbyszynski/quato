@@ -60,3 +60,6 @@ Putting GraphQL to the side to get authentication with Facebook working. Started
 I was able to get the auth working with Facebook with help from the React Navigation documentation on [Authentication flows](https://reactnavigation.org/docs/auth-flow).
 
 __TODO:__ Figure out how to manage secrets in React Native. I don't want to have to check in my Facebook app id or anything into github.
+
+## 2021-05-17: Secrets
+Took a slight detour to figure out how I should be storing the Facebook App ID using to authenticate users. Seems like this is safe to include in the compiled app but it is not 100% clear. For now I am going to use the [dotenv pattern](https://docs.expo.io/guides/environment-variables/#using-a-dotenv-file) described in the Expo docs so I don't have to checkin these at least. I will revisit this again if I ever get around to actually publishing this.

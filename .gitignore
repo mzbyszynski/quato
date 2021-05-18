@@ -12,3 +12,6 @@ web-build/
 
 # macOS
 .DS_Store
+
+# tokens not for git
+.env
