@@ -63,3 +63,8 @@ __TODO:__ Figure out how to manage secrets in React Native. I don't want to have
 
 ## 2021-05-17: Secrets
 Took a slight detour to figure out how I should be storing the Facebook App ID using to authenticate users. Seems like this is safe to include in the compiled app but it is not 100% clear. For now I am going to use the [dotenv pattern](https://docs.expo.io/guides/environment-variables/#using-a-dotenv-file) described in the Expo docs so I don't have to checkin these at least. I will revisit this again if I ever get around to actually publishing this.
+
+## 2021-05-21: db setup and crud
+Was doing some reading and came across [nhost](https://nhost.io/), which is a hosted postgres/hasura GraphQL API, plus auth utilities and some other fun stuff. Going to stick with Fauna for now, but might switch over if I run into a wall. Also experiencing some FOMO about not using [Flutter](https://flutter.dev/), but I'm going to stick with Expo for now.
+
+Took another slight detour to create a shell script that would initialize my local fauna db and create the graphQL schema. Had to do some Googling to get the awk command right. 

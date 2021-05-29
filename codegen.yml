@@ -1,0 +1,30 @@
+overwrite: true
+schema: 
+  - "http://localhost:8084/graphql":
+      headers:
+        Authorization: "Bearer fnAEJy_kEwACACEYSsUIwQB6EP6OdatW59kcoGJ3"
+documents: "./**/*.graphql"
+generates:
+  ./graphqlTypes.ts:
+    config:
+      namingConvention:
+        typeNames: pascal-case#pascalCase
+        transformUnderscore: true
+    plugins:
+      - "typescript"
+  ./hooks:
+    preset: near-operation-file
+    presetConfig:
+      extension: GQL.ts
+      baseTypesPath: ../graphqlTypes.ts
+    config:
+      skipTypename: false
+      withHooks: true
+      withHOC: false
+      withComponent: false
+      namingConvention:
+        typeNames: pascal-case#pascalCase
+        transformUnderscore: true
+    plugins:
+      - "typescript-operations"
+      - "typescript-react-apollo"

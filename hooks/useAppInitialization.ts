@@ -19,6 +19,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Facebook from 'expo-facebook';
+import { useUserLookupQuery, useCreateUserMutation } from './userGQL';
 
 const useAppInitialization = () => {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -68,7 +69,36 @@ const useAppInitialization = () => {
     [],
   );
 
-  return { isLoadingComplete, credentials, authControls };
+  const { data, loading, error } = useUserLookupQuery({
+    skip: !credentials?.userId,
+    variables: { fbUserId: credentials?.userId || '' },
+  });
+
+  const [createUser, { data: createdUserData }] = useCreateUserMutation();
+
+  React.useEffect(() => {
+    const createNewUser = async () => {
+      if (credentials?.userId && !loading && !data?.userByFBId?.fbUserId) {
+        console.log('Creating user');
+        const result = await createUser({
+          variables: { fbUserId: credentials.userId },
+        });
+        console.log('result', result);
+      }
+    };
+    createNewUser();
+  }, [createUser, credentials?.userId, data, loading]);
+
+  console.log('user data ', data);
+  console.log('loading', loading);
+  console.log('Error', error);
+  console.log('createdUserData', createdUserData);
+  return {
+    isLoadingComplete,
+    credentials,
+    authControls,
+    userId: data?.userByFBId?._id || createdUserData?.createUser._id,
+  };
 };
 
 export default useAppInitialization;

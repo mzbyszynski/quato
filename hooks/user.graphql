@@ -1,0 +1,12 @@
+query UserLookup($fbUserId: String!) {
+  userByFBId(fbUserId: $fbUserId) {
+    _id
+    fbUserId
+  }
+}
+
+mutation CreateUser($fbUserId: String!) {
+  createUser(data: { fbUserId: $fbUserId }) {
+    _id
+  }
+}

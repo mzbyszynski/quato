@@ -39,9 +39,11 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import Login from '../screens/Login';
+import { User } from '../graphqlTypes';
 
 interface RootNavigatorProps {
   credentials: Facebook.FacebookAuthenticationCredential | null;
+  userId?: User["_id"];
 }
 interface NavigationProps extends RootNavigatorProps {
   colorScheme: ColorSchemeName;
@@ -51,7 +53,7 @@ interface NavigationProps extends RootNavigatorProps {
 // Read more here: https://reactnavigation.org/docs/modal
 const Stack = createStackNavigator<RootStackParamList>();
 
-const RootNavigator = ({ credentials }: RootNavigatorProps) => (
+const RootNavigator = ({ credentials, userId }: RootNavigatorProps) => (
   <Stack.Navigator
     screenOptions={{
       header: ({ scene }: StackHeaderProps) => (
@@ -85,7 +87,7 @@ const RootNavigator = ({ credentials }: RootNavigatorProps) => (
   </Stack.Navigator>
 );
 
-const Navigation = ({ colorScheme, credentials }: NavigationProps) => (
+const Navigation = ({ colorScheme, credentials, userId }: NavigationProps) => (
   <PaperProvider
     theme={colorScheme === 'dark' ? PaperDarkTheme : PaperDefaultTheme}
   >
@@ -95,7 +97,7 @@ const Navigation = ({ colorScheme, credentials }: NavigationProps) => (
         colorScheme === 'dark' ? NavigationDarkTheme : NavigationDefaultTheme
       }
     >
-      <RootNavigator credentials={credentials} />
+      <RootNavigator credentials={credentials} userId={userId} />
     </NavigationContainer>
   </PaperProvider>
 );

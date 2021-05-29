@@ -15,19 +15,21 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import * as React from 'react';
+import { ApolloProvider } from '@apollo/client';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
 import useAppInitialization from './hooks/useAppInitialization';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import AuthControlsContext from './AuthControlContext';
+import useApolloClient from './hooks/useApolloClient';
 
 const App = () => {
   const {
     isLoadingComplete,
     credentials,
     authControls,
+    userId,
   } = useAppInitialization();
   const colorScheme = useColorScheme();
 
@@ -37,11 +39,22 @@ const App = () => {
   return (
     <AuthControlsContext.Provider value={authControls}>
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} credentials={credentials} />
+        <Navigation
+          colorScheme={colorScheme}
+          credentials={credentials}
+          userId={userId}
+        />
         <StatusBar />
       </SafeAreaProvider>
     </AuthControlsContext.Provider>
   );
 };
 
-export default App;
+export default () => {
+  const client = useApolloClient();
+  return (
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  );
+};

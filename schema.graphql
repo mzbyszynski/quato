@@ -1,0 +1,77 @@
+
+#  Copyright (C) 2021  Marc Zbyszynski
+# 
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU Affero General Public License as
+#  published by the Free Software Foundation, either version 3 of the
+#  License, or (at your option) any later version.
+# 
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU Affero General Public License for more details.
+# 
+#  You should have received a copy of the GNU Affero General Public License
+#  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+
+"""
+A Quato User
+"""
+type User {
+  """
+  Unique Facebook user Id
+  """
+  fbUserId: String! @unique
+  opinions: [Opinion!] @relation
+}
+
+# FIXME: Being fuzzy about which entities are "owned" by a user.
+# Would be nice for items, sources, categories to be shared between users but 
+# That is complicated if users can create them. Probably need a separate concept of
+# a global source or category as opposed to a private one, but I don't want to add
+# that level of complexity just yet.
+"""
+A category for items.
+"""
+type Category {
+  name: String! @unique
+  items: [Item!] @relation
+}
+
+"""
+Something that a user may have an opinion about.
+"""
+type Item {
+  name: String! @unique
+  categories: [Category!]
+}
+
+"""
+Location or method by which an Item was obtained
+"""
+type ItemSource {
+  name: String! @unique
+  opinions: [Opinion] @relation
+}
+
+enum Rating {
+  HATE
+  DO_NOT_LIKE
+  LIKE
+  LOVE
+}
+
+type Opinion {
+  user: User!
+  item: Item!
+  rating: Rating!
+  sources: [ItemSource!]!
+}
+
+type Query {
+  userByFBId(fbUserId: String!): User
+  itemByName(name: String!): Item
+  categoryByName(name: String!): Category
+  sourceByName(name: String!): ItemSource
+}
