@@ -7,8 +7,14 @@ I've started keeping a [development journal](./docs/dev-journal.md) to keep trac
 
 ## Local Development
 
+### Explore GraphQL Schema
+
+```
+gq http://localhost:8084/graphql -i -H "Authorization: Bearer $EXPO_GQL_TOKEN"
+```
 ### Requirements
 * Docker
 * Node
+* Expo-Cli
 * fauna-shell
-* graphqurl
+* [graphqurl](https://github.com/hasura/graphqurl)

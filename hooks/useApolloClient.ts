@@ -16,10 +16,12 @@
  */
 import { useRef } from 'react';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+import Constants from 'expo-constants';
 
 export default () => {
   console.log('Token is ', process.env.EXPO_GQL_TOKEN);
   console.log('URL is', process.env.GQL_URL);
+  console.log('Constants.manifest.env', Constants.manifest.env);
   const clientRef = useRef(
     new ApolloClient({
       uri: process.env.GQL_URL,

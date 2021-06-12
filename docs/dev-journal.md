@@ -68,3 +68,8 @@ Took a slight detour to figure out how I should be storing the Facebook App ID u
 Was doing some reading and came across [nhost](https://nhost.io/), which is a hosted postgres/hasura GraphQL API, plus auth utilities and some other fun stuff. Going to stick with Fauna for now, but might switch over if I run into a wall. Also experiencing some FOMO about not using [Flutter](https://flutter.dev/), but I'm going to stick with Expo for now.
 
 Took another slight detour to create a shell script that would initialize my local fauna db and create the graphQL schema. Had to do some Googling to get the awk command right. 
+
+## 2021-06-11: 
+Spent an absurd amount of time writing a shell script to initialize the database and export the GraphQL access token. Writing _sed_ and _awk_ scripts while refusing to just learn the syntax has always been a wonderful experience for me in the past. Finally have the startup working 95% working. 
+
+Now I'm running into the limitations of FaunaDB's GraphQL API. I'm trying to search a list of names based on a search string and that seems to require a lot of work. You have to define a lambda function in FaunaDB (outside the graphQL Schema) and then integrate that with the schema using directives. I know this would be easy using a traditional relation database with a GraphQL server on top, so I might give up on Fauna and try out [nhost](https://nhost.io/). I'm trying to rapidly prototype my app at this point and taking a deep-dive into a new database that requires its own query language and has it's own proclivities seems like a distraction. FaunaDB has some exciting promises about scalability, but scaling is not a problem I have right now.

@@ -43,7 +43,7 @@ import { User } from '../graphqlTypes';
 
 interface RootNavigatorProps {
   credentials: Facebook.FacebookAuthenticationCredential | null;
-  userId?: User["_id"];
+  userId?: User['_id'];
 }
 interface NavigationProps extends RootNavigatorProps {
   colorScheme: ColorSchemeName;
